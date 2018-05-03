@@ -19,6 +19,8 @@ class onChannelJoin(ts3plugin):
     enabled = False
     debug = False
     channels = [9, 35, 36]
+    uids = [""]
+    uidsMover = [""]
 
     @staticmethod
     def timestamp(): return '[{:%Y-%m-%d %H:%M:%S}] '.format(datetime.now())
@@ -32,7 +34,13 @@ class onChannelJoin(ts3plugin):
             ts3lib.printMessageToCurrentTab("{0}Set {1} to [color=yellow]{2}[/color]".format(self.timestamp(),self.name,self.enabled))
 
     def onClientMoveEvent(self, serverConnectionHandlerID, clientID, oldChannelID, newChannelID, visibility, moveMessage):
-    #def onClientMoveMovedEvent(self, serverConnectionHandlerID, clientID, oldChannelID, newChannelID, visibility, moverID, moverName, moverUniqueIdentifier, moveMessage):
+        (err, clientUID) = ts3lib.getClientVariable(serverConnectionHandlerID, clientID, ts3defines.ClientProperties.CLIENT_UNIQUE_IDENTIFIER)
+        if err != ts3defines.ERROR_ok:
+            ts3lib.printMessageToCurrentTab("error getting uid: %s" % err)
+
+        if(clientUID in uids):
+           return 0
+        
         (err, myid) = ts3lib.getClientID(serverConnectionHandlerID)
         if err != ts3defines.ERROR_ok:
             self.log(LogLevel.LogLevel_DEBUG,"error getting clientid : %s" % err)
@@ -48,7 +56,14 @@ class onChannelJoin(ts3plugin):
             if err != ts3defines.ERROR_ok:
                 ts3lib.printMessageToCurrentTab("error moving: %s" % err)
               
-    def onClientMoveMovedEvent(self, serverConnectionHandlerID, clientID, oldChannelID, newChannelID, visibility, moverID, moverName, moverUniqueIdentifier, moveMessage):
+    def onClientMoveMovedEvent(self, serverConnectionHandlerID, clientID, oldChannelID, newChannelID, visibility, moverID, moverName, moverUID, moveMessage):
+        (err, movedUID) = ts3lib.getClientVariable(serverConnectionHandlerID, clientID, ts3defines.ClientProperties.CLIENT_UNIQUE_IDENTIFIER)
+        if err != ts3defines.ERROR_ok:
+            ts3lib.printMessageToCurrentTab("error getting uid: %s" % err)
+            
+        if((moverUID in uidsMover) or (movedUID in uids)):
+           return 0
+           
         (err, myid) = ts3lib.getClientID(serverConnectionHandlerID)
         if err != ts3defines.ERROR_ok:
             self.log(LogLevel.LogLevel_DEBUG,"error getting clientid : %s" % err)
