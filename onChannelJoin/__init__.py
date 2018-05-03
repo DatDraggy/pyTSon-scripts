@@ -44,7 +44,7 @@ class onChannelJoin(ts3plugin):
             ts3lib.printMessageToCurrentTab("%s" % myid)
             ts3lib.printMessageToCurrentTab("%s" % newChannelID)
             ts3lib.printMessageToCurrentTab("%s" % myChannelID)
-        if(newChannelID in self.channels or self.enabled and newChannelID == myChannelID and clientID != myid):
+        if((newChannelID in self.channels or self.enabled) and newChannelID == myChannelID and clientID != myid):
             if(self.debug):
                 ts3lib.printMessageToCurrentTab("%s" % clientID)
                 
@@ -75,7 +75,7 @@ class onChannelJoin(ts3plugin):
             ts3lib.printMessageToCurrentTab("%s" % newChannelID)
             ts3lib.printMessageToCurrentTab("%s" % myChannelID)
             
-        if(newChannelID in self.channels or self.enabled and newChannelID == myChannelID and clientID != myid and moverID != myid):
+        if((newChannelID in self.channels or self.enabled) and newChannelID == myChannelID and clientID != myid and moverID != myid):
             ts3lib.printMessageToCurrentTab("%s" % clientID)
             (err, movedUID) = ts3lib.getClientVariable(serverConnectionHandlerID, clientID, ts3defines.ClientProperties.CLIENT_UNIQUE_IDENTIFIER)
             ts3lib.printMessageToCurrentTab("%s" % movedUID)

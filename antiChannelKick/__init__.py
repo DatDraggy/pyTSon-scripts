@@ -35,7 +35,7 @@ class antiChannelKick(ts3plugin):
             ts3lib.printMessageToCurrentTab("{0}Set {1} to [color=yellow]{2}[/color]".format(self.timestamp(),self.name,self.enabled))
 
     def onClientKickFromChannelEvent(self, schid, clientID, oldChannelID, newChannelID, visibility, kickerID, kickerName, kickerUniqueIdentifier, kickMessage):
-        if(self.enabled === False):
+        if(self.enabled == False):
             return 0
         (err, ownID) = ts3lib.getClientID(schid)
         if clientID != ownID or kickerID == ownID: return

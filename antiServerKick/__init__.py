@@ -59,7 +59,7 @@ class antiServerKick(ts3plugin):
         self.log(LogLevel.LogLevel_DEBUG, "Tab updated: {}".format(self.tabs[schid]), schid)
 
     def onClientKickFromServerEvent(self, schid, clientID, oldChannelID, newChannelID, visibility, kickerID, kickerName, kickerUniqueIdentifier, kickMessage):
-        if(self.enabled === False):
+        if(self.enabled == False):
             return 0
         self.log(LogLevel.LogLevel_DEBUG, "kicked")
         if kickerID == clientID: return
