@@ -17,7 +17,7 @@ class onChannelJoin(ts3plugin):
     menuItems = [(ts3defines.PluginMenuType.PLUGIN_MENU_TYPE_GLOBAL, 0, "Toggle Anti Channel Join", "")]
     hotkeys = []
     enabled = False
-    debug = True
+    debug = False
     channels = [9, 35, 36]
 
     @staticmethod
