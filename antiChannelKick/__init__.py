@@ -16,7 +16,7 @@ class antiChannelKick(ts3plugin):
     infoTitle = None
     menuItems = [(ts3defines.PluginMenuType.PLUGIN_MENU_TYPE_GLOBAL, 0, "Toggle Anti Channel Kick", "")]
     hotkeys = []
-    enabled = False
+    enabled = True
     debug = False
     whitelistUIDs = [""]
     whitelistSGIDs = [2]
@@ -35,6 +35,8 @@ class antiChannelKick(ts3plugin):
             ts3lib.printMessageToCurrentTab("{0}Set {1} to [color=yellow]{2}[/color]".format(self.timestamp(),self.name,self.enabled))
 
     def onClientKickFromChannelEvent(self, schid, clientID, oldChannelID, newChannelID, visibility, kickerID, kickerName, kickerUniqueIdentifier, kickMessage):
+        if(self.enabled === False):
+            return 0
         (err, ownID) = ts3lib.getClientID(schid)
         if clientID != ownID or kickerID == ownID: return
         (err, sgids) = ts3lib.getClientVariable(schid, clientID, ts3defines.ClientPropertiesRare.CLIENT_SERVERGROUPS)

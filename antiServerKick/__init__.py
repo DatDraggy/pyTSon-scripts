@@ -15,10 +15,11 @@ class antiServerKick(ts3plugin):
     offersConfigure = False
     commandKeyword = ""
     infoTitle = None
-    menuItems = []
+    menuItems = [(ts3defines.PluginMenuType.PLUGIN_MENU_TYPE_GLOBAL, 0, "Toggle Anti Server Kick", "")]
     hotkeys = []
+    enabled = True
     debug = False
-    whitelistUIDs = ["serveradmin"]
+    whitelistUIDs = []
     delay = 2000
     tabs = {}
     schid = 0
@@ -37,6 +38,11 @@ class antiServerKick(ts3plugin):
         if err == ts3defines.ERROR_ok and status == ts3defines.ConnectStatus.STATUS_CONNECTION_ESTABLISHED: self.saveTab(schid)
         self.log(LogLevel.LogLevel_DEBUG, "Plugin for pyTSon by [url=https://github.com/{2}]{2}[/url] loaded.".format(self.timestamp(), self.name, self.author))
 
+    def onMenuItemEvent(self, schid, atype, menuItemID, selectedItemID):
+        if atype == ts3defines.PluginMenuType.PLUGIN_MENU_TYPE_GLOBAL and menuItemID == 0:
+            self.enabled = not self.enabled
+            ts3lib.printMessageToCurrentTab("{0}Set {1} to [color=yellow]{2}[/color]".format(self.timestamp(),self.name,self.enabled))
+        
     def onConnectStatusChangeEvent(self, schid, newStatus, errorNumber):
         if newStatus == ts3defines.ConnectStatus.STATUS_CONNECTION_ESTABLISHED: self.saveTab(schid)
 
@@ -53,6 +59,8 @@ class antiServerKick(ts3plugin):
         self.log(LogLevel.LogLevel_DEBUG, "Tab updated: {}".format(self.tabs[schid]), schid)
 
     def onClientKickFromServerEvent(self, schid, clientID, oldChannelID, newChannelID, visibility, kickerID, kickerName, kickerUniqueIdentifier, kickMessage):
+        if(self.enabled === False):
+            return 0
         self.log(LogLevel.LogLevel_DEBUG, "kicked")
         if kickerID == clientID: return
         if clientID != self.tabs[schid]["clid"]: return
