@@ -4,7 +4,7 @@ import ts3defines, ts3lib
 
 
 class onStartup(ts3plugin):
-    name = "Doublecocks onStartup"
+    name = "Yeet onStartup"
     apiVersion = 21
     requestAutoload = True
     version = "1"
