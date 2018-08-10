@@ -1,7 +1,7 @@
 import ts3lib, ts3defines
 from ts3plugin import ts3plugin, PluginHost
 from pytson import getCurrentApiVersion
-from bluscream import timestamp, clientURL
+def timestamp(): return '[{:%Y-%m-%d %H:%M:%S}] '.format(datetime.now())
 
 class quickPerm(ts3plugin):
     name = "Quick Permissions"
@@ -10,7 +10,7 @@ class quickPerm(ts3plugin):
     requestAutoload = True
     version = "1.0"
     author = "Bluscream"
-    description = "Stolen from NoX by exp111 stolen from Bluescream by DatDraggy"
+    description = "Stolen from NoX by exp111 stolen from Bluscream by DatDraggy"
     offersConfigure = False
     commandKeyword = ""
     infoTitle = None
