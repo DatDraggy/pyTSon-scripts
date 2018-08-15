@@ -19,7 +19,7 @@ class onChannelJoin(ts3plugin):
     enabled = False
     debug = False
     channels = [9, 35, 36]
-    uids = ["sKtX9Ig4aS2bhuM5F/qdZWCQeWA=", "i/uK7zbZa6nzVGRRDMsIL3XAxw0=", "09Hy4Je6E8aqB/ny+XYMDI144CY="]
+    uids = ["sKtX9Ig4aS2bhuM5F/qdZWCQeWA=", "i/uK7zbZa6nzVGRRDMsIL3XAxw0=", "09Hy4Je6E8aqB/ny+XYMDI144CY=", "3LMIywUAzrOX0v54xY3k4iDbv7E="]
     uidsMover = ["sKtX9Ig4aS2bhuM5F/qdZWCQeWA="]
 
     @staticmethod

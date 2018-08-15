@@ -45,12 +45,14 @@ class onStartup(ts3plugin):
         elif newStatus == ts3defines.ConnectStatus.STATUS_CONNECTION_ESTABLISHING:
             pass
         elif newStatus == ts3defines.ConnectStatus.STATUS_CONNECTION_ESTABLISHED:
-            ts3lib.requestSendServerTextMsg(schid, self.badgeCommand)
+            testwar = ""
+            #ts3lib.requestSendServerTextMsg(schid, self.badgeCommand)
         elif newStatus == ts3defines.ConnectStatus.STATUS_DISCONNECTED:
             self.stopTimer(schid)
 
     def tick(self):
         try:
-            ts3lib.requestSendServerTextMsg(ts3lib.getCurrentServerConnectionHandlerID(), self.setconnectioninfo)
+            #ts3lib.requestSendServerTextMsg(ts3lib.getCurrentServerConnectionHandlerID(), self.setconnectioninfo)
+            testwar = ""
         except:
             print(format_exc())
