@@ -59,7 +59,7 @@ class onChannelJoin(ts3plugin):
             if(clientUID in self.uids):
                 return 0
            
-            err = ts3lib.requestClientMove(serverConnectionHandlerID, clientID, oldChannelID, "")
+            #err = ts3lib.requestClientMove(serverConnectionHandlerID, clientID, oldChannelID, "")
             if err != ts3defines.ERROR_ok:
                 ts3lib.printMessageToCurrentTab("error moving: %s" % err)
               
@@ -85,6 +85,6 @@ class onChannelJoin(ts3plugin):
             if((moverUID in self.uidsMover) or (movedUID in self.uids)):
                 return 0
             
-            err = ts3lib.requestClientMove(serverConnectionHandlerID, clientID, oldChannelID, "")
+            #err = ts3lib.requestClientMove(serverConnectionHandlerID, clientID, oldChannelID, "")
             if err != ts3defines.ERROR_ok:
                 ts3lib.printMessageToCurrentTab("error moving: %s" % err)
